@@ -2,13 +2,13 @@
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`class `[`Procedural`](#classProcedural) | [Procedural](#classProcedural) generation class.
+`class `[`Procedural`](#classProcedural) | Procedural generation class.
 
-# class `Procedural` 
+# class `Procedural`
 
-[Procedural](#classProcedural) generation class.
+Procedural generation class.
 
-Coordinate dependant procedural generation class that doesn't use [rand()](#classProcedural_1a1d0478c541128da8668fc6ca62e23cf4) or srand(), because those are a buggy mess
+Coordinate dependant procedural generation class that doesn't use rand() or srand(), because those are a buggy mess
 
 Most of the code is shamelessly stolen from this video: [https://www.youtube.com/watch?v=ZZY9YE7rZJw](https://www.youtube.com/watch?v=ZZY9YE7rZJw)
 
@@ -24,13 +24,13 @@ Most of the code is shamelessly stolen from this video: [https://www.youtube.com
 
 ## Members
 
-#### `public inline  `[`Procedural`](#classProcedural_1a06e6bfc92eff9aa55b6deb4886275afe)`()` 
+#### `public inline  `[`Procedural`](#classProcedural_1a06e6bfc92eff9aa55b6deb4886275afe)`()`
 
 Default constructor.
 
 Uses seed 0 at coordinates 0,0
 
-#### `public inline  `[`Procedural`](#classProcedural_1a2ac0bf63eac1e56865b2eb4edf213a6d)`(int x,int y)` 
+#### `public inline  `[`Procedural`](#classProcedural_1a2ac0bf63eac1e56865b2eb4edf213a6d)`(int x,int y)`
 
 Uses seed 0 with set coordinates.
 
@@ -38,7 +38,7 @@ Uses seed 0 with set coordinates.
 int x: x coordinate\
 int y: y coordinate
 
-#### `public inline  `[`Procedural`](#classProcedural_1a9cb3bad40266e7a6bcf788ba15ef6fec)`(unsigned int seed,int x,int y)` 
+#### `public inline  `[`Procedural`](#classProcedural_1a9cb3bad40266e7a6bcf788ba15ef6fec)`(unsigned int seed,int x,int y)`
 
 Uses set seed.
 
@@ -47,13 +47,13 @@ unsigned int seed: starting seed\
 int x: x coordinate\
 int y: y coordinate
 
-#### `public inline int `[`rand`](#classProcedural_1a1d0478c541128da8668fc6ca62e23cf4)`()` 
+#### `public inline int `[`rand`](#classProcedural_1a1d0478c541128da8668fc6ca62e23cf4)`()`
 
 Generates a number, using previous number as seed.
 
 **Returns** a random number
 
-#### `public inline int `[`proc`](#classProcedural_1a1049f905c9a6eba14911e66daa1c4dce)`()` 
+#### `public inline int `[`proc`](#classProcedural_1a1049f905c9a6eba14911e66daa1c4dce)`()`
 
 Generates consistent number based on the current seed.
 
