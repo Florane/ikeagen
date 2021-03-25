@@ -1,6 +1,8 @@
 #include <iostream>
 
+#include "procedural.hpp"
+
 int main()
 {
-    std::cout << "Hello world!" << std::endl;
+    
 }
