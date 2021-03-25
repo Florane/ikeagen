@@ -26,14 +26,14 @@ public:
     /**Uses seed 0 at coordinates 0,0*/
     Procedural() : globalSeed(0), x(0), y(0) {};
     ///Uses seed 0 with set coordinates.
-    /** **Parameters**:  \n
-        int x: x coordinate  \n
+    /** **Parameters**:\\\n
+        int x: x coordinate\\\n
         int y: y coordinate*/
     Procedural(int x, int y) : globalSeed(0), x(x), y(y) {};
     ///Uses set seed.
-    /** **Parameters**  \n
-        unsigned int seed: starting seed  \n
-        int x: x coordinate  \n
+    /** **Parameters**\\\n
+        unsigned int seed: starting seed\\\n
+        int x: x coordinate\\\n
         int y: y coordinate*/
     Procedural(unsigned int seed, int x, int y) : globalSeed(seed), x(x), y(y) {};
 
