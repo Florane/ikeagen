@@ -34,8 +34,8 @@ Uses seed 0 at coordinates 0,0
 
 Uses seed 0 with set coordinates.
 
-**Parameters**:
-int x: x coordinate
+**Parameters**: 
+int x: x coordinate 
 int y: y coordinate
 
 #### `public inline  `[`Procedural`](#classProcedural_1a9cb3bad40266e7a6bcf788ba15ef6fec)`(unsigned int seed,int x,int y)` 
@@ -43,8 +43,8 @@ int y: y coordinate
 Uses set seed.
 
 **Parameters**
-unsigned int seed: starting seed
-int x: x coordinate
+unsigned int seed: starting seed 
+int x: x coordinate 
 int y: y coordinate
 
 #### `public inline int `[`rand`](#classProcedural_1a1d0478c541128da8668fc6ca62e23cf4)`()` 
