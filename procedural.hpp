@@ -26,21 +26,21 @@ public:
     /**Uses seed 0 at coordinates 0,0*/
     Procedural() : globalSeed(0), x(0), y(0) {};
     ///Uses seed 0 with set coordinates.
-    /****Parameters**:
-        int x: x coordinate
+    /** **Parameters**:\n
+        int x: x coordinate\n
         int y: y coordinate*/
     Procedural(int x, int y) : globalSeed(0), x(x), y(y) {};
     ///Uses set seed.
-    /****Parameters**
-        unsigned int seed: starting seed
-        int x: x coordinate
+    /** **Parameters**\n
+        unsigned int seed: starting seed\n
+        int x: x coordinate\n
         int y: y coordinate*/
     Procedural(unsigned int seed, int x, int y) : globalSeed(seed), x(x), y(y) {};
 
     ///Generates a number, using previous number as seed.
-    /****Returns** a random number*/
+    /** **Returns** a random number*/
     int rand() {return globalSeed = generate(globalSeed);}
     ///Generates consistent number based on the current seed.
-    /****Returns** a constant random number*/
+    /** **Returns** a constant random number*/
     int proc() {return generate(globalSeed);}
 };
