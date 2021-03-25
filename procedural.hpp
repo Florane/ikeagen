@@ -22,25 +22,25 @@ class Procedural
         return (tmp >> 32) ^ tmp;
     }
 public:
-    ///Default constructor.\
+    ///Default constructor.
     ///Uses seed 0 at coordinates 0,0
     Procedural() : globalSeed(0), x(0), y(0) {};
-    ///Uses seed 0 with set coordinates.\
+    ///Uses seed 0 with set coordinates.
     ///**Parameters**:\
     ///  int x: x coordinate\
     ///  int y: y coordinate
     Procedural(int x, int y) : globalSeed(0), x(x), y(y) {};
-    ///Uses set seed.\
+    ///Uses set seed.
     ///**Parameters**\
     ///  unsigned int seed: starting seed\
     ///  int x: x coordinate\
     ///  int y: y coordinate
     Procedural(unsigned int seed, int x, int y) : globalSeed(seed), x(x), y(y) {};
 
-    ///Generates a number, using previous number as seed.\
+    ///Generates a number, using previous number as seed.
     ///**Returns** a random number
     int rand() {return globalSeed = generate(globalSeed);}
-    ///Generates consistent number based on the current seed.\
+    ///Generates consistent number based on the current seed.
     ///**Returns** a constant random number
     int proc() {return generate(globalSeed);}
 };
