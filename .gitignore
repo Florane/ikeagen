@@ -1,4 +1,6 @@
+maps/*/*
 compile
 run
 docs
 Doxyfile
+*.o

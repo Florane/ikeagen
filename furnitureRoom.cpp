@@ -1,9 +1,12 @@
 #include "furnitureRoom.hpp"
 #include "defines.hpp"
 #include "procedural.hpp"
+
 #include <vector>
 #include <unordered_map>
 #include <iostream>
+#include <fstream>
+#include <filesystem>
 
 void addPossible(std::pair<int, int> cell,std::vector<std::pair<int, int>>* stack,std::vector<std::pair<int, int>>* remove,std::unordered_map<int, bool>* wasChosen,std::unordered_map<int, bool>* exists)
 {
@@ -68,7 +71,7 @@ Walls FurnitureRoom::generateWalls()
     return walls;
 }
 
-void FurnitureRoom::generateLoot()
+Sector FurnitureRoom::generateLoot()
 {
 
 }
@@ -80,5 +83,19 @@ void FurnitureRoom::pingEntities()
 
 Walls FurnitureRoom::produceWalls()
 {
-    return generateWalls();
+    Walls walls;
+    std::string file = "maps/walls/x" + std::to_string(xPos) + "y" + std::to_string(yPos) + ".dat";
+    if(std::filesystem::exists(file.c_str()))
+        {walls.deserialize(file.c_str());}
+    if(walls.sizeX() != ROOM_SIZE)
+    {
+        walls = generateWalls();
+        walls.serialize(file.c_str());
+    }
+    return walls;
+}
+
+Sector FurnitureRoom::produceLoot()
+{
+
 }

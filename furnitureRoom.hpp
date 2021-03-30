@@ -6,14 +6,14 @@
 
 class FurnitureRoom : public Room
 {
-    Walls generateWalls();
-    void generateLoot();
+    Walls generateWalls() override;
+    Sector generateLoot();
     void pingEntities();
 public:
     FurnitureRoom() : Room() {};
     FurnitureRoom(int x,int y) : Room(x,y) {};
-    Walls produceWalls() override; // returns wall data
-    Sector produceLoot(); // returns loot position data
+    Walls produceWalls();
+    Sector produceLoot() override; // returns loot position data
     Sector produceEntities(); // returns entity position data
     Sector produceBackground(); // returns bg color data
 };
