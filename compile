@@ -1,3 +1,0 @@
-#!/bin/bash
-rm run
-g++ main.cpp sector.cpp walls.cpp room.cpp furnitureRoom.cpp -std=c++20 -Wnarrowing -o run -g
