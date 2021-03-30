@@ -8,6 +8,8 @@
 class Room
 {
 protected:
+    Walls wallStorage;
+    Sector lootStorage;
     virtual Walls generateWalls();
 public:
     int xPos,yPos;

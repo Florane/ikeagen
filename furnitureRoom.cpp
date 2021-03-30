@@ -73,7 +73,16 @@ Walls FurnitureRoom::generateWalls()
 
 Sector FurnitureRoom::generateLoot()
 {
+    Sector loot(ROOM_SIZE,ROOM_SIZE,0);
+    Procedural proc(xPos,yPos,SEED_ROOM);
+    Walls walls = produceWalls();
 
+    for(int x = 0;x < ROOM_SIZE;x++)
+        for(int y = 0;y < ROOM_SIZE;y++)
+            if((walls.get(x,y) == 7 || walls.get(x,y) == 11 || walls.get(x,y) == 13 || walls.get(x,y) == 14) && proc.rand()%3 == 0)
+                loot.set(x,y,1);
+
+    return loot;
 }
 
 void FurnitureRoom::pingEntities()
@@ -83,19 +92,26 @@ void FurnitureRoom::pingEntities()
 
 Walls FurnitureRoom::produceWalls()
 {
-    Walls walls;
-    std::string file = "maps/walls/x" + std::to_string(xPos) + "y" + std::to_string(yPos) + ".dat";
-    if(std::filesystem::exists(file.c_str()))
-        {walls.deserialize(file.c_str());}
-    if(walls.sizeX() != ROOM_SIZE)
+    if(wallStorage.sizeX() != ROOM_SIZE)
     {
-        walls = generateWalls();
-        walls.serialize(file.c_str());
+        std::string file = "maps/walls/x" + std::to_string(xPos) + "y" + std::to_string(yPos) + ".dat";
+        if(std::filesystem::exists(file.c_str()))
+            {wallStorage.deserialize(file.c_str());}
+        wallStorage = generateWalls();
+        wallStorage.serialize(file.c_str());
     }
-    return walls;
+    return wallStorage;
 }
 
 Sector FurnitureRoom::produceLoot()
 {
-
+    if(lootStorage.sizeX() != ROOM_SIZE)
+    {
+        std::string file = "maps/loot/x" + std::to_string(xPos) + "y" + std::to_string(yPos) + ".dat";
+        if(std::filesystem::exists(file.c_str()))
+            {lootStorage.deserialize(file.c_str());}
+        lootStorage = generateLoot();
+        lootStorage.serialize(file.c_str());
+    }
+    return lootStorage;
 }
