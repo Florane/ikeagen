@@ -1,10 +1,10 @@
 #pragma GCC diagnostic ignored "-Wnarrowing"
 #include <iostream>
 
-#include "furnitureRoom.hpp"
+#include "renderMap.hpp"
 
 int main()
 {
-    FurnitureRoom room;
-    room.produceWalls().draw("test.dat");
+    RenderMap map;
+    map.drawTexture(2).copyToImage().saveToFile("img.png");
 }

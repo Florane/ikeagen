@@ -1,3 +1,4 @@
+*.png
 maps/*/*
 compile
 run
