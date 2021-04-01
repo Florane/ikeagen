@@ -31,7 +31,7 @@ Walls FurnitureRoom::generateWalls()
     int exits[4][2] = {{0,Procedural(SEED_EXIT,xPos,yPos).proc()%ROOM_SIZE}
         ,{Procedural(SEED_EXIT+1,xPos,yPos).proc()%ROOM_SIZE,0}
         ,{ROOM_SIZE-1,Procedural(SEED_EXIT,xPos+1,yPos).proc()%ROOM_SIZE}
-        ,{Procedural(SEED_EXIT,xPos,yPos+1).proc()%ROOM_SIZE,ROOM_SIZE-1}};
+        ,{Procedural(SEED_EXIT+1,xPos,yPos+1).proc()%ROOM_SIZE,ROOM_SIZE-1}};
 
     std::vector<std::pair<int, int>> stack;
     std::unordered_map<int, bool> wasChosen;
@@ -67,6 +67,11 @@ Walls FurnitureRoom::generateWalls()
         }
         stack.erase(stack.begin()+selected);
     }
+
+    walls.leftSet(exits[0][0],exits[0][1],true,true);
+    walls.upSet(exits[1][0],exits[1][1],true,true);
+    walls.rightSet(exits[2][0],exits[2][1],true,true);
+    walls.downSet(exits[3][0],exits[3][1],true,true);
 
     return walls;
 }
