@@ -36,6 +36,29 @@ sf::Texture RenderMap::drawWalls(Room* room)
     return texture.getTexture();
 }
 
+sf::Texture RenderMap::drawLoot(Room* room)
+{
+    sf::RenderTexture texture;
+    texture.create(CELL_SIZE*ROOM_SIZE,CELL_SIZE*ROOM_SIZE);
+    Sector loot = room->produceLoot();
+
+    for(int x = 0;x < ROOM_SIZE;x++)
+    {
+        for(int y = 0;y < ROOM_SIZE;y++)
+        {
+            if(loot.get(x,y))
+            {
+                sf::RectangleShape rect(sf::Vector2f(CELL_SIZE-2,CELL_SIZE-2));
+                rect.setPosition(x*CELL_SIZE+1,y*CELL_SIZE+1);
+                rect.setFillColor(sf::Color(LOOT_COLOR,128));
+                texture.draw(rect);
+            }
+        }
+    }
+    texture.display();
+    return texture.getTexture();
+}
+
 void addTexture(int x, int y,sf::RenderTexture* texture,sf::Texture add)
 {
     sf::Sprite sprite;
@@ -55,8 +78,10 @@ sf::Texture RenderMap::drawTexture(int selectTextures)
         {
             std::cout << x << " " << y << std::endl;
             Room* room = Map().produceRoom(x,y);
-            if(selectTextures>>1%2)
+            if((selectTextures>>1)%2)
                 addTexture(x,y,&texture,drawWalls(room));
+            if((selectTextures>>2)%2)
+                addTexture(x,y,&texture,drawLoot(room));
             texture.display();
         }
     }
