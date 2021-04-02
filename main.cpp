@@ -7,5 +7,5 @@
 int main()
 {
     RenderMap map;
-    map.drawTexture(7).copyToImage().saveToFile("img.png");
+    map.drawTexture(4+2+1).copyToImage().saveToFile("img.png");
 }
