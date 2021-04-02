@@ -90,6 +90,45 @@ Sector FurnitureRoom::generateLoot()
     return loot;
 }
 
+void checkPosition(int x, int y, int color, Sector* background,Walls* walls)
+{
+    int check[4][3] = {{-1,0,11},{0,-1,7},{1,0,14},{0,1,13}};
+    bool isCarpet = false;
+    for(int i = 0;i < 4;i++)
+        if(walls->get(x+check[i][0],y+check[i][1]) == check[i][2])
+            isCarpet = true;
+
+    if(isCarpet)
+    {
+        background->set(x,y,color);
+        for(int i = 0;i < 4;i++)
+        {
+            if(background->get(x+check[i][0],y+check[i][1]) == 0)
+            {
+                if(walls->get(x+check[i][0],y+check[i][1]) == check[i][2])
+                    {background->set(x+check[i][0],y+check[i][1],color);}
+                else if((walls->get(x,y)>>i)%2 == 0)
+                    {checkPosition(x+check[i][0],y+check[i][1],color,background,walls);}
+            }
+        }
+    }
+}
+
+Sector FurnitureRoom::generateBackground()
+{
+    Sector background(ROOM_SIZE,ROOM_SIZE,0);
+    Walls walls = produceWalls();
+    Procedural proc(xPos,yPos,SEED_ROOM);
+
+    for(int x = 0;x < ROOM_SIZE;x++)
+        for(int y = 0;y < ROOM_SIZE;y++)
+        {
+            if(background.get(x,y) == 0)
+                checkPosition(x,y,proc.rand()%7+1,&background,&walls);
+        }
+    return background;
+}
+
 void FurnitureRoom::pingEntities()
 {
 
@@ -119,4 +158,17 @@ Sector FurnitureRoom::produceLoot()
         lootStorage.serialize(file.c_str());
     }
     return lootStorage;
+}
+
+Sector FurnitureRoom::produceBackground()
+{
+    if(backgroundStorage.sizeX() != ROOM_SIZE)
+    {
+        std::string file = "maps/background/x" + std::to_string(xPos) + "y" + std::to_string(yPos) + ".dat";
+        if(std::filesystem::exists(file.c_str()))
+            {backgroundStorage.deserialize(file.c_str());}
+        backgroundStorage = generateBackground();
+        backgroundStorage.serialize(file.c_str());
+    }
+    return backgroundStorage;
 }

@@ -10,13 +10,13 @@ class Room
 protected:
     Walls wallStorage;
     Sector lootStorage;
-    virtual Walls generateWalls();
-public:
+    Sector backgroundStorage;
     int xPos,yPos;
+public:
     Room();
     Room(int x,int y);
     virtual Walls produceWalls(); // returns wall data
     virtual Sector produceLoot(); // returns loot position data
     // virtual Sector produceEntities(); // returns entity position data
-    // virtual Sector produceBackground(); // returns bg color data
+    virtual Sector produceBackground(); // returns bg color data
 };

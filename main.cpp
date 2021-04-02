@@ -2,9 +2,10 @@
 #include <iostream>
 
 #include "renderMap.hpp"
+#include "furnitureRoom.hpp"
 
 int main()
 {
     RenderMap map;
-    map.drawTexture(2).copyToImage().saveToFile("img.png");
+    map.drawTexture(7).copyToImage().saveToFile("img.png");
 }

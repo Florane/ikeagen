@@ -10,6 +10,7 @@ class RenderMap
     int X,Y,W,H; // X,Y - starting position, W,H - image size in cells
     sf::Texture drawWalls(Room* room);
     sf::Texture drawLoot(Room* room);
+    sf::Texture drawBackground(Room* room);
 public:
     RenderMap() : X(0), Y(0), W(ROOM_SIZE), H(ROOM_SIZE) {};
     RenderMap(int x, int y, int w, int h) : X(x), Y(y), W(w), H(h) {};

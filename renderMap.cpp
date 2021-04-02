@@ -59,6 +59,41 @@ sf::Texture RenderMap::drawLoot(Room* room)
     return texture.getTexture();
 }
 
+sf::Texture RenderMap::drawBackground(Room* room)
+{
+    sf::RenderTexture texture;
+    texture.create(CELL_SIZE*ROOM_SIZE,CELL_SIZE*ROOM_SIZE);
+    texture.clear(sf::Color(BG_COLOR));
+    Sector bg = room->produceBackground();
+
+    sf::Texture floor;
+    floor.loadFromFile("floor.png",sf::IntRect(0,0,CELL_SIZE,CELL_SIZE));
+    floor.setRepeated(true);
+
+    sf::Texture carpet;
+    carpet.loadFromFile("carpet.png",sf::IntRect(0,0,CELL_SIZE,CELL_SIZE));
+    carpet.setRepeated(true);
+
+    for(int x = 0;x < ROOM_SIZE;x++)
+    {
+        for(int y = 0;y < ROOM_SIZE;y++)
+        {
+            sf::Sprite sprite;
+            sprite.setPosition(x*CELL_SIZE,y*CELL_SIZE);
+            sprite.setTexture(floor);
+            texture.draw(sprite);
+            if(bg.get(x,y))
+            {
+                sprite.setTexture(carpet);
+                sprite.setColor(sf::Color((bg.get(x,y)%2)*255,((bg.get(x,y)>>1)%2)*255,((bg.get(x,y)>>2)%2)*255));
+                texture.draw(sprite);
+            }
+        }
+    }
+    texture.display();
+    return texture.getTexture();
+}
+
 void addTexture(int x, int y,sf::RenderTexture* texture,sf::Texture add)
 {
     sf::Sprite sprite;
@@ -78,6 +113,8 @@ sf::Texture RenderMap::drawTexture(int selectTextures)
         {
             std::cout << x << " " << y << std::endl;
             Room* room = Map().produceRoom(x,y);
+            if((selectTextures)%2)
+                addTexture(x,y,&texture,drawBackground(room));
             if((selectTextures>>1)%2)
                 addTexture(x,y,&texture,drawWalls(room));
             if((selectTextures>>2)%2)

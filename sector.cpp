@@ -21,7 +21,7 @@ void Sector::setAll(uint8_t value)
     data.resize(x,a);
 }
 
-uint8_t Sector::get(int x, int y) {return (x >= 0 && x < data.size() && y >= 0 && y < data[0].size() ? data[x][y] : -1);}
+uint8_t Sector::get(int x, int y) {return (x >= 0 && x < data.size() && y >= 0 && y < data[0].size() ? data[x][y] : 255);}
 unsigned int Sector::sizeX() {return data.size();}
 unsigned int Sector::sizeY() {return data[0].size();}
 
