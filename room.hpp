@@ -12,11 +12,16 @@ protected:
     Sector lootStorage;
     Sector backgroundStorage;
     int xPos,yPos;
+
+    virtual Walls generateWalls() = 0;
+    virtual Sector generateLoot() = 0;
+    virtual Sector generateBackground() = 0;
+    virtual void generateEntities() = 0;
 public:
     Room();
     Room(int x,int y);
-    virtual Walls produceWalls(); // returns wall data
-    virtual Sector produceLoot(); // returns loot position data
-    // virtual Sector produceEntities(); // returns entity position data
-    virtual Sector produceBackground(); // returns bg color data
+    Walls produceWalls(); // returns wall data
+    Sector produceLoot(); // returns loot position data
+    //Sector produceEntities(); // returns entity position data
+    Sector produceBackground(); // returns bg color data
 };
